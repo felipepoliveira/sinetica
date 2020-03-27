@@ -2,16 +2,19 @@ package io.felipepoliveira.sinetica.synths;
 
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
 
-public class SineWave extends SynthWave{
+public class WhiteNoiseWave extends SynthWave {
+	
+	public WhiteNoiseWave() {
+		setVolume(0.5);
+	}
 
 	@Override
 	public byte[] createSynthBuffer(double frequency, long duration) {
 		byte[] output = new byte[MasterSoundPlayer.getInstance().calculateSamplesInSecond(duration)];
-		double period = MasterSoundPlayer.getInstance().calculatePeriod(frequency);
-				
+		
 		for (int i = 0; i < output.length; i++) {
-			double angle = 2.0 * Math.PI * i / period;
-			output[i] = adjustOutputWithVolume((byte)((Math.sin(angle) * Byte.MAX_VALUE)));
+			byte bOutput = (byte) (Math.random() * 127 * ((i % 2 == 0) ? 1 : -1));
+			output[i] = adjustOutputWithVolume(bOutput);
 		}
 		
 		return output;

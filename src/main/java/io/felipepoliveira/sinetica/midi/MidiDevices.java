@@ -13,6 +13,7 @@ import javax.sound.sampled.LineUnavailableException;
 
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
 import io.felipepoliveira.sinetica.synths.SineWave;
+import io.felipepoliveira.sinetica.synths.WhiteNoiseWave;
 
 public class MidiDevices implements Receiver {
 	
@@ -33,7 +34,7 @@ public class MidiDevices implements Receiver {
 	private Collection<MidiDevice> transmitters;
 	
 	private MidiDevices() {
-		searchForConnectedDevices();
+		searchAndOpenDevices();
 	}
 	
 	public static MidiDevices getInstance() {
@@ -92,9 +93,18 @@ public class MidiDevices implements Receiver {
 	}
 	
 	/**
+	 * Close all devices channels
+	 */
+	public void closeDevices() {
+		for (MidiDevice device : getDevices()) {
+			device.close();
+		}
+	}
+	
+	/**
 	 * Search for MIDI devices connected on the computer
 	 */
-	public void searchForConnectedDevices() {
+	public void searchAndOpenDevices() {
 		//Clear devices list
 		devices = new ArrayList<MidiDevice>(10);
 		receivers = new ArrayList<MidiDevice>(10);
@@ -149,11 +159,12 @@ public class MidiDevices implements Receiver {
 		return (msg.getMessage().length >= 1 && msg.getMessage()[0] == MIDI_KEY_PRESSED);
 	}
 	
-	private boolean isKeyReleased(MidiMessage msg) {
-		return (msg.getMessage().length >= 1 && msg.getMessage()[0] == MIDI_KEY_RELEASED);
-	}
+//	private boolean isKeyReleased(MidiMessage msg) {
+//		return (msg.getMessage().length >= 1 && msg.getMessage()[0] == MIDI_KEY_RELEASED);
+//	}
 
-	SineWave sine = new SineWave();
+	WhiteNoiseWave whiteNoiseWave = new WhiteNoiseWave();
+	SineWave sineWave = new SineWave();
 	public void send(MidiMessage message, long timeStamp) {
 		
 		//KEY_EVENT
@@ -162,9 +173,8 @@ public class MidiDevices implements Receiver {
 			midiKeyEventArgs.intensityCode = message.getMessage()[2];
 			
 			if (isKeyPressed(message)) {
-
 				try {
-					MasterSoundPlayer.getInstance().play(sine, midiKeyEventArgs.getPitch(), 100);
+					MasterSoundPlayer.getInstance().playSync(whiteNoiseWave, midiKeyEventArgs.getPitch(), 1000);
 				} catch (LineUnavailableException e) {
 					e.printStackTrace();
 				}
