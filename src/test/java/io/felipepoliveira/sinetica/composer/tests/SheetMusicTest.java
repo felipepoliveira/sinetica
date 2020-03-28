@@ -4,8 +4,8 @@ import javax.sound.sampled.LineUnavailableException;
 
 import io.felipepoliveira.sinetica.Instrument;
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
-import io.felipepoliveira.sinetica.NoteQueue;
 import io.felipepoliveira.sinetica.Pitch;
+import io.felipepoliveira.sinetica.composer.NoteQueue;
 import io.felipepoliveira.sinetica.composer.SheetMusic;
 import io.felipepoliveira.sinetica.instruments.synths.SineWave;
 
@@ -44,10 +44,10 @@ public class SheetMusicTest {
 		
 		byte[] buf = 
 		NoteQueue.build()
-			.add(Pitch.getPitch(Pitch.ORD_C, 4), 250)
+			.add(Pitch.getPitch(Pitch.ORD_C, 4), 400)
 			.add(Pitch.getPitch(Pitch.ORD_D, 4))
 			.add(Pitch.getPitch(Pitch.ORD_E, 4))
-			.add(Pitch.getPitch(Pitch.ORD_F, 4), 230)
+			.add(Pitch.getPitch(Pitch.ORD_F, 4), 400)
 			.add(0)
 			.add(Pitch.getPitch(Pitch.ORD_F, 4))
 			.add(Pitch.getPitch(Pitch.ORD_F, 4))

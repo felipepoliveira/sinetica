@@ -123,5 +123,9 @@ public class MasterSoundPlayer extends SoundPlayer {
 	private AudioFormat createAudioFormat() {
 		return new AudioFormat(sampleRate, 8, 1, true, true);
 	}
+	
+	public AudioFormat getDefaultAudioFormat() {
+		return audioFormat;
+	}
 
 }

@@ -19,7 +19,10 @@ public class AudioBuffer {
 	/**
 	 * This method return an value based on the rules:<br/>
 	 * <ul>
-	 * 	<li>Both</li>
+	 * 	<li>Both are 0: return 0</li>
+	 * 	<li>Both are positive: Return the max between then</li>
+	 * 	<li>Both are negative: Return the min between then</li>
+	 * 	<li>Both has opposite sign: Return the sum between then </li>
 	 * </ul>
 	 * @param a
 	 * @param b
@@ -33,7 +36,7 @@ public class AudioBuffer {
 	}
 	
 	/**
-	 * Mix two byte[] buffers with non rotation (values between -127 and 127)
+	 * Sum two byte[] buffers with non rotation (values between -127 and 127)
 	 * @param buf1
 	 * @param buf2
 	 * @return
@@ -52,10 +55,17 @@ public class AudioBuffer {
 		return rbuf;
 	}
 	
+	/**
+	 * Mix an source audio buffer into an target audio buffer starting in an offset parameter
+	 * @param target
+	 * @param source
+	 * @param offset
+	 * @return
+	 */
 	public static byte[] mix(byte[] target, byte[] source, int offset) {
 		byte[] rbuf;
 		
-		//If the source buffer + offset is rgeather than the target buffer, increase the result buffer size
+		//If the source buffer + offset is greater than the target buffer, increase the result buffer size
 		if (source.length + offset > target.length) {
 			rbuf = new byte[source.length + offset];
 		}

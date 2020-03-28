@@ -6,14 +6,13 @@ import java.util.TreeSet;
 import io.felipepoliveira.sinetica.AudioBuffer;
 import io.felipepoliveira.sinetica.Instrument;
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
-import io.felipepoliveira.sinetica.Mixable;
 
 /**
  * Represent an collection of musical notes
  * @author Felipe Oliveira
  *
  */
-public class SheetMusic implements AudioTrack, Mixable{
+public class SheetMusic implements AudioTrack{
 	
 	/**
 	 * Store the note sheet in time

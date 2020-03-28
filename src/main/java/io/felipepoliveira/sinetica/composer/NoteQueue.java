@@ -1,10 +1,9 @@
-package io.felipepoliveira.sinetica;
+package io.felipepoliveira.sinetica.composer;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import io.felipepoliveira.sinetica.composer.Note;
-import io.felipepoliveira.sinetica.composer.SheetMusic;
+import io.felipepoliveira.sinetica.Instrument;
 
 /**
  * Note factory class

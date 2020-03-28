@@ -3,6 +3,8 @@ package io.felipepoliveira.sinetica;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
+import io.felipepoliveira.sinetica.instruments.AudioFile;
+
 public class SoundPlayer extends SoundEmitter {
 	
 	public void playSync(byte[] buffer) throws LineUnavailableException {
@@ -23,5 +25,15 @@ public class SoundPlayer extends SoundEmitter {
 		sdl.drain();
 		sdl.close();
 	}
+	
+	public void playSync(AudioFile audioFile) throws LineUnavailableException {
+		SourceDataLine sdl = audioFile.createSourceDataLine();
+		sdl.open();
+		sdl.start();
+		sdl.write(audioFile.getRawBuffer(), 0, audioFile.getRawBuffer().length);
+		sdl.drain();
+		sdl.close();
+	}
+
 
 }
