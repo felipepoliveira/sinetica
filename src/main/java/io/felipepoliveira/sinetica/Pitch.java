@@ -4,6 +4,21 @@ public class Pitch {
 	
 	private Pitch() {}
 	
+	public static final int
+		ORD_C = 0,
+		ORD_CS = 1,
+		ORD_D = 2,
+		ORD_DS = 3,
+		ORD_E = 4,
+		ORD_F = 5,
+		ORD_FS = 6,
+		ORD_G = 7,
+		ORD_GS = 8,
+		ORD_A = 9,
+		ORD_AS = 10,
+		ORD_B = 11
+		;
+	
 	public static final double 
 		C_O0 = 16.35,
 		CS_O0 = 17.32,

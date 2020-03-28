@@ -12,8 +12,8 @@ import javax.sound.midi.Transmitter;
 import javax.sound.sampled.LineUnavailableException;
 
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
-import io.felipepoliveira.sinetica.synths.SineWave;
-import io.felipepoliveira.sinetica.synths.WhiteNoiseWave;
+import io.felipepoliveira.sinetica.instruments.synths.SineWave;
+import io.felipepoliveira.sinetica.instruments.synths.WhiteNoiseWave;
 
 public class MidiDevices implements Receiver {
 	
@@ -174,7 +174,7 @@ public class MidiDevices implements Receiver {
 			
 			if (isKeyPressed(message)) {
 				try {
-					MasterSoundPlayer.getInstance().playSync(whiteNoiseWave, midiKeyEventArgs.getPitch(), 1000);
+					MasterSoundPlayer.getInstance().playSync(sineWave, midiKeyEventArgs.getPitch(), 100);
 				} catch (LineUnavailableException e) {
 					e.printStackTrace();
 				}

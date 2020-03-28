@@ -1,11 +1,11 @@
-package io.felipepoliveira.sinetica.synths;
+package io.felipepoliveira.sinetica.instruments.synths;
 
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
 
 public class SineWave extends SynthWave{
 
 	@Override
-	public byte[] createSynthBuffer(double frequency, long duration) {
+	public byte[] createBuffer(double frequency, long duration) {
 		byte[] output = new byte[MasterSoundPlayer.getInstance().calculateSamplesInSecond(duration)];
 		double period = MasterSoundPlayer.getInstance().calculatePeriod(frequency);
 				

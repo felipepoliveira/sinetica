@@ -1,5 +1,10 @@
 package io.felipepoliveira.sinetica;
 
+/**
+ * Represents an device that reproduces sound
+ * @author Felipe Oliveira
+ *
+ */
 public class SoundEmitter {
 	
 	private double volume = 1;

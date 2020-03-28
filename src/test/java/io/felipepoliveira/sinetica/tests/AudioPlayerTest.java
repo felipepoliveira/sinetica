@@ -4,7 +4,7 @@ import javax.sound.sampled.LineUnavailableException;
 
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
 import io.felipepoliveira.sinetica.Pitch;
-import io.felipepoliveira.sinetica.synths.SineWave;
+import io.felipepoliveira.sinetica.instruments.synths.SineWave;
 
 public class AudioPlayerTest {
 

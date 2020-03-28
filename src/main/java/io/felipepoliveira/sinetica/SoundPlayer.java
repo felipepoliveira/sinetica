@@ -3,8 +3,6 @@ package io.felipepoliveira.sinetica;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
-import io.felipepoliveira.sinetica.synths.SynthWave;
-
 public class SoundPlayer extends SoundEmitter {
 	
 	public void playSync(byte[] buffer) throws LineUnavailableException {
@@ -16,8 +14,8 @@ public class SoundPlayer extends SoundEmitter {
 		sdl.close();
 	}
 	
-	public void playSync(SynthWave synthWave, double frequency, long duration) throws LineUnavailableException {
-		byte[] synthWaveBuffer = synthWave.createSynthBuffer(frequency, duration);
+	public void playSync(Instrument instrument, double frequency, long duration) throws LineUnavailableException {
+		byte[] synthWaveBuffer = instrument.createBuffer(frequency, duration);
 		SourceDataLine sdl = MasterSoundPlayer.getInstance().createSourceDataLine();
 		sdl.open();
 		sdl.start();
