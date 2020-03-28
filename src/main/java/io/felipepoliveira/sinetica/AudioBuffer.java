@@ -74,9 +74,7 @@ public class AudioBuffer {
 		for (int i = offset; i < source.length + offset; i++) {
 			byte tb = rbuf[i];
 			byte sb = source[i - offset];
-//			int sum = ((int) tb) + sb;
 			rbuf[i] = mix(sb, tb);
-//			rbuf[i] = (byte) ((sum >= 0 ) ?  Math.min(Byte.MAX_VALUE, sum) : Math.max(-Byte.MAX_VALUE, sum));
 		}
 		
 		return rbuf;

@@ -1,6 +1,5 @@
 package io.felipepoliveira.sinetica.composer;
 
-import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -106,8 +105,6 @@ public class SheetMusic implements AudioTrack, Mixable{
 			
 			//Add the noteBuffer into the final track buffer
 			trackBuffer =  AudioBuffer.mix(trackBuffer, noteBuffer, offset);
-			
-			System.out.println(Arrays.equals(trackBuffer, noteBuffer));
 		}
 		
 		return trackBuffer;

@@ -4,6 +4,7 @@ import javax.sound.sampled.LineUnavailableException;
 
 import io.felipepoliveira.sinetica.Instrument;
 import io.felipepoliveira.sinetica.MasterSoundPlayer;
+import io.felipepoliveira.sinetica.NoteQueue;
 import io.felipepoliveira.sinetica.Pitch;
 import io.felipepoliveira.sinetica.composer.SheetMusic;
 import io.felipepoliveira.sinetica.instruments.synths.SineWave;
@@ -40,6 +41,42 @@ public class SheetMusicTest {
 		sheetMusic.addNote(Pitch.getPitch(Pitch.ORD_F, 4), 400, 10800);
 		sheetMusic.addNote(Pitch.getPitch(Pitch.ORD_F, 4), 400, 11600);
 		sheetMusic.addNote(Pitch.getPitch(Pitch.ORD_F, 4), 400, 12000);
+		
+		byte[] buf = 
+		NoteQueue.build()
+			.add(Pitch.getPitch(Pitch.ORD_C, 4), 250)
+			.add(Pitch.getPitch(Pitch.ORD_D, 4))
+			.add(Pitch.getPitch(Pitch.ORD_E, 4))
+			.add(Pitch.getPitch(Pitch.ORD_F, 4), 230)
+			.add(0)
+			.add(Pitch.getPitch(Pitch.ORD_F, 4))
+			.add(Pitch.getPitch(Pitch.ORD_F, 4))
+			.add(0)
+			.add(Pitch.getPitch(Pitch.ORD_C, 4))
+			.add(Pitch.getPitch(Pitch.ORD_D, 4))
+			.add(Pitch.getPitch(Pitch.ORD_C, 4))
+			.add(Pitch.getPitch(Pitch.ORD_D, 4))
+			.add(0)
+			.add(Pitch.getPitch(Pitch.ORD_D, 4))
+			.add(Pitch.getPitch(Pitch.ORD_D, 4))
+			.add(0)
+			.add(Pitch.getPitch(Pitch.ORD_C, 4))
+			.add(Pitch.getPitch(Pitch.ORD_G, 4))
+			.add(Pitch.getPitch(Pitch.ORD_A, 4))
+			.add(Pitch.getPitch(Pitch.ORD_E, 4))
+			.add(0)
+			.add(Pitch.getPitch(Pitch.ORD_E, 4))
+			.add(Pitch.getPitch(Pitch.ORD_E, 4))
+			.add(0)
+			.add(Pitch.getPitch(Pitch.ORD_C, 4))
+			.add(Pitch.getPitch(Pitch.ORD_D, 4))
+			.add(Pitch.getPitch(Pitch.ORD_E, 4))
+			.add(Pitch.getPitch(Pitch.ORD_F, 4))
+			.add(0)
+			.add(Pitch.getPitch(Pitch.ORD_F, 4))
+			.add(Pitch.getPitch(Pitch.ORD_F, 4))
+			.buildSheetMusic(instrument).mix();
+			
 //		sheetMusic.addNote(Pitch.getPitch(Pitch.ORD_C, 4), 2000, 0);
 //		sheetMusic.addNote(Pitch.getPitch(Pitch.ORD_G, 4), 2000, 0);
 //		sheetMusic.addNote(Pitch.getPitch(Pitch.ORD_C, 2), 2000, 2000);
@@ -48,7 +85,7 @@ public class SheetMusicTest {
 		
 		
 		try {
-			MasterSoundPlayer.getInstance().playSync(sheetMusic.mix());
+			MasterSoundPlayer.getInstance().playSync(buf);
 		} catch (LineUnavailableException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
