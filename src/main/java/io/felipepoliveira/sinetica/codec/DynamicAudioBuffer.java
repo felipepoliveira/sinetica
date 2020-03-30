@@ -61,7 +61,7 @@ public class DynamicAudioBuffer {
 		}
 		else if (this.instrument.getAudioFormat().getSampleSizeInBits() == 24) {
 			this.maxValue = (long) (Math.pow(2, 23) - 1);
-			this.samplesInBitsSize = SamplesInBits.$32;
+			this.samplesInBitsSize = SamplesInBits.$24;
 		}
 		else if (this.instrument.getAudioFormat().getSampleSizeInBits() == 32) {
 			this.maxValue = Integer.MAX_VALUE;
