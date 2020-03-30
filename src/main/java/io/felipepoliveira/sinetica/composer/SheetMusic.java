@@ -5,15 +5,14 @@ import java.util.TreeSet;
 
 import io.felipepoliveira.sinetica.AudioBuffer;
 import io.felipepoliveira.sinetica.Instrument;
-import io.felipepoliveira.sinetica.MasterSoundPlayer;
 
 /**
  * Represent an collection of musical notes
  * @author Felipe Oliveira
  *
  */
-public class SheetMusic implements AudioTrack{
-	
+public class SheetMusic implements AudioTrack {
+		
 	/**
 	 * Store the note sheet in time
 	 */
@@ -85,7 +84,7 @@ public class SheetMusic implements AudioTrack{
 
 	public byte[] mix() {
 		//Create an buffer with the size of this track duration
-		byte[] trackBuffer = new byte[MasterSoundPlayer.getInstance().calculateSamplesInSecond(getDuration())];
+		byte[] trackBuffer = new byte[instrument.calculateSamplesInSecond(getDuration())];
 		
 		int offset = 0;
 		long lastTimestamp = 0;
@@ -95,7 +94,7 @@ public class SheetMusic implements AudioTrack{
 			
 			//If the timestamp of the current note is greater than the last timestamp add empty bytes into it
 			if (note.getTimestamp() > lastTimestamp) {
-				offset = MasterSoundPlayer.getInstance().calculateSamplesInSecond(note.getTimestamp());
+				offset = instrument.calculateSamplesInSecond(note.getTimestamp());
 			}
 			lastTimestamp = note.getTimestamp();
 			

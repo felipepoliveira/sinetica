@@ -1,9 +1,6 @@
 package io.felipepoliveira.sinetica;
 
 import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
 
 /**
  * Represents Master sound
@@ -34,11 +31,6 @@ public class MasterSoundPlayer extends SoundPlayer {
 	private int bpm = 120;
 
 	/**
-	 * Store the sample rate
-	 */
-	private int sampleRate;
-
-	/**
 	 * Store the audio format
 	 */
 	private AudioFormat audioFormat = null;
@@ -52,39 +44,9 @@ public class MasterSoundPlayer extends SoundPlayer {
 		if (masterAudioPlayer == null) {
 			masterAudioPlayer = new MasterSoundPlayer();
 			masterAudioPlayer.bar = new Bar(4, 4);
-			masterAudioPlayer.setSampleRate(16 * 1024);
 		}
 
 		return masterAudioPlayer;
-	}
-
-	public SourceDataLine createSourceDataLine() throws LineUnavailableException {
-		return AudioSystem.getSourceDataLine(audioFormat);
-	}
-	
-	public SourceDataLine createNewSourceDataLine() throws LineUnavailableException {
-		return AudioSystem.getSourceDataLine(createAudioFormat());
-	}
-
-	/**
-	 * Calculate the number of samples to be executed in an specific duration based
-	 * on the master sample rate
-	 * 
-	 * @param duration
-	 * @return
-	 */
-	public int calculateSamplesInSecond(long duration) {
-		return (int) (duration * getSampleRate() / 1000);
-	}
-
-	/**
-	 * Calculate the period based on the sample rate and the given frequency
-	 * 
-	 * @param frequency
-	 * @return
-	 */
-	public double calculatePeriod(double frequency) {
-		return getSampleRate() / frequency;
 	}
 
 	/**
@@ -109,19 +71,6 @@ public class MasterSoundPlayer extends SoundPlayer {
 
 	public Bar getBar() {
 		return bar;
-	}
-
-	public int getSampleRate() {
-		return sampleRate;
-	}
-
-	private void setSampleRate(int sampleRate) {
-		this.sampleRate = sampleRate;
-		this.audioFormat = createAudioFormat();
-	}
-	
-	private AudioFormat createAudioFormat() {
-		return new AudioFormat(sampleRate, 8, 1, true, true);
 	}
 	
 	public AudioFormat getDefaultAudioFormat() {

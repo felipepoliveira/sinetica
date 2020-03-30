@@ -8,15 +8,6 @@ public class AudioBuffer {
 	private AudioBuffer() {}
 	
 	/**
-	 * Create an empty buffer that represents an wait tempo
-	 * @param duration
-	 * @return
-	 */
-	public static byte[] emptyBuffer(int duration) {
-		return new byte[MasterSoundPlayer.getInstance().calculateSamplesInSecond(duration)];
-	}
-	
-	/**
 	 * This method return an value based on the rules:<br/>
 	 * <ul>
 	 * 	<li>Both are 0: return 0</li>
@@ -86,6 +77,20 @@ public class AudioBuffer {
 			byte sb = source[i - offset];
 			rbuf[i] = mix(sb, tb);
 		}
+		
+		return rbuf;
+	}
+	
+	/**
+	 * Format an given source 
+	 * @param src
+	 * @param duration
+	 * @param srcFmt
+	 * @param tgtFmt
+	 * @return
+	 */
+	public static byte[] format(byte[] src, long duration, float srcRate, float tgtRate) {
+		byte[] rbuf = new byte[(int) (duration * tgtRate / 1000)];
 		
 		return rbuf;
 	}

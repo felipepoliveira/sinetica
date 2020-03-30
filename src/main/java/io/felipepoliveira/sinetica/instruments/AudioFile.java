@@ -11,7 +11,6 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import io.felipepoliveira.sinetica.Instrument;
@@ -97,15 +96,6 @@ public class AudioFile extends Instrument {
 	public byte[] createRawBuffer(double frequency, long duration) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	/**
-	 * Create an source data line for this audio file format
-	 * @return
-	 * @throws LineUnavailableException
-	 */
-	public SourceDataLine createSourceDataLine() throws LineUnavailableException {
-		return AudioSystem.getSourceDataLine(this.audioFormat);
 	}
 
 }

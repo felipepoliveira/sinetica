@@ -36,7 +36,7 @@ public class NoteQueue {
 	 * Builder method
 	 * @return
 	 */
-	public static NoteQueue build() {
+	public static NoteQueue create() {
 		return new NoteQueue();
 	}
 	
@@ -109,7 +109,10 @@ public class NoteQueue {
 	 */
 	public SheetMusic buildSheetMusic(Instrument instrument) {
 		SheetMusic sm = new SheetMusic(instrument);
-		sm.getNotes().addAll(this.notes);
+		
+		for (Note note : notes) {
+			sm.addNote(note);
+		}
 		
 		return sm;
 	}

@@ -1,7 +1,5 @@
 package io.felipepoliveira.sinetica.instruments.synths;
 
-import io.felipepoliveira.sinetica.MasterSoundPlayer;
-
 /**
  * Represents an square wave
  * @author Felipe Oliveira
@@ -11,13 +9,7 @@ public class SquareWave extends SynthWave {
 
 	@Override
 	public byte[] createRawBuffer(double frequency, long duration) {
-		byte[] output = new byte[MasterSoundPlayer.getInstance().calculateSamplesInSecond(duration)];
-		double period = MasterSoundPlayer.getInstance().calculatePeriod(frequency);
-				
-		for (int i = 0; i < output.length; i++) {
-			double angle = 2.0 * Math.PI * i / period;
-			output[i] = (byte)((Math.sin(angle) * Byte.MAX_VALUE));
-		}
+		byte[] output = new byte[this.calculateSamplesInSecond(duration)];
 		
 		return output;
 	}

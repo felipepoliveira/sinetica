@@ -28,8 +28,10 @@ public class Mixer extends SoundEmitter {
 	 * Add an {@link Instrument} into this mixer
 	 * @param instrument
 	 */
-	public void addInstrument(Instrument instrument) {
+	public Mixer addInstrument(Instrument instrument) {
 		this.instruments.add(instrument);
+		
+		return this;
 	}
 	
 	/**
